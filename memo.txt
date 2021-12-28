@@ -160,9 +160,9 @@ aws
 
 1. git add .
 2. git commit -m "commit-name"
-3. git push origin master
+3. git push origin main
 
-4.(다른사람 수정후)git pull origin master
+4.(다른사람 수정후)git pull origin main
 
 manage access 에서 add people을 사용하여 작업자 추가
 git clone 은 github 저장소를 만든 사람이 아니라 협업에 참여할 사람이 하는 것
