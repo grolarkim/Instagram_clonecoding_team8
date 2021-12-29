@@ -16,11 +16,31 @@ def showLoginPage():
 
 @app.route('/register')
 def showRegisterPage():
-    return render_template('register.html')
+    return render_template('join.html')
 
 @app.route('/posting')
 def showPostingPage():
     return render_template('posting.html')
+
+@app.route('/api/timeline')
+def showIndex1():
+    return 
+
+@app.route('/api/my_post')
+def showIndex2():
+    return 
+
+@app.route('/api/login')
+def showIndex3():
+    return 
+
+@app.route('/api/register')
+def showIndex4():
+    return 
+
+@app.route('/api/posting')
+def showIndex5():
+    return 
 
 
 
