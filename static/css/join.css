@@ -16,9 +16,9 @@ body{
     margin: 0 0 3% 12%;
 }
 #img-text-wrapper img{
-    height: 50px;
-    width: 130px;
-    margin : 15% 0 5% 25%;
+    height: 70px;
+    width: 200px;
+    margin : 15% 20% 5% 15%;
 }
 #img-text-wrapper p{
     color: deepskyblue;
