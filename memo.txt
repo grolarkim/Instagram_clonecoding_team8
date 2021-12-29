@@ -168,3 +168,7 @@ manage access 에서 add people을 사용하여 작업자 추가
 git clone 은 github 저장소를 만든 사람이 아니라 협업에 참여할 사람이 하는 것
 1. git clone URL
 
+팀원간 동일한 부분을 작성하지 말것
+파일 단위로 팀원 간 역할 분배
+
+1229 html css
