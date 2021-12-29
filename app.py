@@ -12,7 +12,7 @@ def showIndexPage():
 
 @app.route('/profile')
 def showProfilePage():
-    return render_template('profile.html')
+    return render_template('main.html')
 
 @app.route('/login')
 def showLoginPage():
