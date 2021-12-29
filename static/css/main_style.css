@@ -48,7 +48,7 @@
     outline: none;
 }
 .header .inner .input_box input#search{
-    background: url("../images/search@3x.png") no-repeat;
+    background: url("../static/images/search@3x.png") no-repeat;
     background-position: 65px;
     background-size: 14px;
 }
