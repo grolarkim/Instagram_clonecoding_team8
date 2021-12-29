@@ -1,5 +1,9 @@
 from flask import Flask, render_template, jsonify, request
 
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+db = client.dbinsta
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -23,23 +27,23 @@ def showPostingPage():
     return render_template('posting.html')
 
 @app.route('/api/timeline')
-def showIndex1():
+def showTimeLine():
     return 
 
 @app.route('/api/my_post')
-def showIndex2():
+def showMyPost():
     return 
 
 @app.route('/api/login')
-def showIndex3():
+def Login():
     return 
 
 @app.route('/api/register')
-def showIndex4():
+def Register():
     return 
 
 @app.route('/api/posting')
-def showIndex5():
+def Posting():
     return 
 
 
