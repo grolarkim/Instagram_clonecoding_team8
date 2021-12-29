@@ -1,3 +1,4 @@
+/*전체감싸는 컨테이너*/
 #container{
     max-width: 600px;
     height: 500px;
@@ -8,6 +9,7 @@
 
 }
 
+/*왼쪽 사진있는부분*/
 #left-body{
     background-color: white;
     width: 250vw;
@@ -18,6 +20,7 @@
     width:100%
 }
 
+/*오른쪽 로그인 박스*/
 #right-body{
     background-color: white;
     width: 250vw;
@@ -28,13 +31,15 @@
     border: 1px solid lightgray;
     height : 350px;
 }
+
+/*로고*/
 #right-body #content-wrapper img{
     height: 50px;
-    width: 120px;
-    margin : 10% 0 5% 25%;
+    width: 130px;
+    margin : 15% 0 0 25%;
 }
 #right-body #content-wrapper #login_div{
-    margin-top: 5%;
+    margin-top: 15%;
     display: flex;
     flex-direction: column;
     align-items:center;
@@ -46,7 +51,7 @@
     height: 30px;
     border: 1px solid lightgray;
     border-radius: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     margin-top: 0;
     width: 200px
 }
@@ -61,6 +66,8 @@
     font-size: 13px;
     font-weight: bold;
 }
+
+/*오른쪽 회원가입박스*/
 #right-body #right-body-footer{
     margin-top: 5%;
     border: 1px solid lightgray;
@@ -68,12 +75,16 @@
 #right-body-footer{
 
 }
-#right-body-footer #p-wrapper{
+#right-body-footer #join-wrapper{
     display:flex;
     justify-content: space-around;
 }
-#right-body-footer #p-wrapper #join{
+#right-body-footer #join-wrapper p{
+    font-size: 14px; ;
+}
+#right-body-footer #join-wrapper #join{
     font-weight: bold;
     color: deepskyblue;
-
+    margin-top: 5%;
+    font-size: 14px;
 }
