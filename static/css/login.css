@@ -1,0 +1,79 @@
+#container{
+    max-width: 600px;
+    height: 500px;
+
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10%;
+
+}
+
+#left-body{
+    background-color: white;
+    width: 250vw;
+
+    margin-right: 10%;
+}
+#left-body img{
+    width:100%
+}
+
+#right-body{
+    background-color: white;
+    width: 250vw;
+    height: 400px;
+}
+
+#content-wrapper{
+    border: 1px solid lightgray;
+    height : 350px;
+}
+#right-body #content-wrapper img{
+    height: 50px;
+    width: 120px;
+    margin : 10% 0 5% 25%;
+}
+#right-body #content-wrapper #login_div{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    height: 180px;
+
+}
+#right-body #content-wrapper #login_div .login-input{
+    background-color: whitesmoke;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-top: 0;
+    width: 200px
+}
+#right-body #content-wrapper #login_div button{
+    margin-top: 20px;
+    width: 205px;
+    height: 30px;
+    background-color: skyblue;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    color : white;
+    font-size: 13px;
+    font-weight: bold;
+}
+#right-body #right-body-footer{
+    margin-top: 5%;
+    border: 1px solid lightgray;
+}
+#right-body-footer{
+
+}
+#right-body-footer #p-wrapper{
+    display:flex;
+    justify-content: space-around;
+}
+#right-body-footer #p-wrapper #join{
+    font-weight: bold;
+    color: deepskyblue;
+
+}
