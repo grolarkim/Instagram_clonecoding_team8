@@ -37,6 +37,22 @@
 ## 기능 및 DB구조 설계
 
 ### 기능 설계
+요약본
+
+| NO. | 기능 | 요청방식 | url | request (프론트에서 ajax 사용시 data에 넣을 것) | response (백엔드에서 jsonify 사용시 넣을것) | 비고 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | 메인화면 | GET | / |  |  | (index.html불러옴) |
+| 2 | 메인화면 데이터보내기 | POST | /api/timeline | {id_give: id} | {'post':post_list}  | DB에서 ID가 같은 작성글 검색 |
+| 3 | 마이 페이지 | GET | /profile |  |  | (profile.html불러옴) |
+| 4 | 마이 페이지 데이터 보내기 | POST | /api/my_post | {id_give: id} | {'post':post_list} | DB에서 ID가 같은 작성글 검색 |
+| 5 | 로그인 페이지 | GET | /login |  |  | (login.html불러옴) |
+| 6 | 로그인 | POST | /api/login | {id_give : id ,pw_give : pw}  | 성공시 {'result': 'success', 'token': token} 실패시 {'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'} | DB에 있는지 검색 후 있으면 로그인 |
+| 7 | 회원가입 창 | GET | /register |  |  | (register.html불러옴) |
+| 8 | 계정생성 | POST | /api/register | {id_give : id , pw_give :pw, url_give :url,   name_give:name, desc_give: desc} | {'result': 'success'} | 중복 ID 검색후 없으면 DB에 저장 |
+| 9 | 게시글 올리기 페이지 | GET | /posting |  |  | (posting.html불러옴) |
+| 10 | 게시글 올리기 | POST | /api/posting | {post_img_give: post_img, post_text_give: post_text, author_id_give: author_id, post_time_give: post_time} | {'result': 'success'} | DB에 저장 |
+
+
 #### 0. 기본 기능
 헤드에 있는 버튼들 기능 구현 _(3~5가지 기능)_
 
