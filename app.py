@@ -43,11 +43,6 @@ def showMyPost():
 
 @app.route('/api/login', methods=['POST'])
 def Login():
-<<<<<<< HEAD
-    return
-
-
-=======
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
 
@@ -74,7 +69,6 @@ def Login():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
->>>>>>> 06d4263d1bc157698732f2bcd1c0b4ae05c92c64
 
 @app.route('/api/register', methods=['POST'])
 def api_register():
