@@ -13,7 +13,6 @@ import hashlib
 def showIndexPage():
     return render_template('index.html')
 
-
 @app.route('/profile')
 def showProfilePage():
     return render_template('main.html')
@@ -41,7 +40,6 @@ def showMyPost():
 @app.route('/api/login')
 def Login():
     return 
-
 
 @app.route('/api/register', methods=['POST'])
 def api_register():
