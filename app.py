@@ -46,8 +46,9 @@ def Login():
     pw_receive = request.form['pw_give']
     #받아온 패스워드를 해시함수화하기
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
+    print(pw_hash)
     #DB에서 post로 받아온 id와, pw에 맞는값 불러와서 result에 저장
-    result = db.register.find_one({'id': id_receive, 'password': pw_hash})
+    result = db.register.find_one({'id': id_receive, 'pw': pw_hash})
 
     if result is not None:
         payload = {
