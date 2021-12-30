@@ -41,6 +41,8 @@ def showMyPost():
 def Login():
     return
 
+
+
 @app.route('/api/register', methods=['POST'])
 def api_register():
     id_receive = request.form['id_give']
