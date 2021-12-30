@@ -6,12 +6,12 @@ from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.dbsparta
 
-import hashlib
+import hashlib #pw해시함수화 위해 임포트
+import datetime #로그인 유지를 위해 필요하니 임포트
+import jwt #얘를 임포트하기위해 인터프리터에 PyJwt패키지 설치!
 
-import jwt
 SECRET_KEY = 'SPARTA'
 
-import datetime
 
 @app.route('/')
 def showIndexPage():
@@ -35,11 +35,11 @@ def showPostingPage():
 
 @app.route('/api/timeline')
 def showTimeLine():
-    return 
+    return
 
 @app.route('/api/my_post')
 def showMyPost():
-    return 
+    return
 
 @app.route('/api/login', methods=['POST'])
 def Login():
@@ -88,7 +88,7 @@ def api_register():
         'desc': desc_receive
     }
     db.register.insert_one(doc)
-    return jsonify({'msg': '가입완료'}) 
+    return jsonify({'msg': '가입완료'})
 
 @app.route('/api/posting', methods=['POST'])
 def Posting():
