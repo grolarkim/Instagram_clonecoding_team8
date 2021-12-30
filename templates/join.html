@@ -6,11 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인스타그램 로그인화면 </title>
+    <!-- jQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/static/css/join.css">
 
-    <style>
+    <script>
+        function join() {
+            let id = $('#id').val()
+            let pw = $('#pw').val()
+            let url = $('#url').val()
+            let name = $('#name').val()
+            let desc = $('#desc').val()
 
-    </style>
+             $.ajax({
+                type: 'POST',
+                url: '/api/register',
+                data: {id_give : id, pw_give : pw, url_give : url, name_give : name, desc_give : desc},//아이디,비밀번호,사진url,사용자이름,소개
+                success: function (response) {//반환잘받으면
+                    alert(response['msg'])
+                    window.location.reload();
+                }
+            })
+        }
+    </script>
 </head>
 
 <body>
@@ -22,15 +40,15 @@
 
         <div id = "input-div">
             <div id = "input-wrapper">
-                <input type="text" id="id" class="join-input" placeholder="아이디를 입력하세요">
-                <input type="text" id="pw" class="join-input" placeholder="비밀번호를 입력하세요">
-                <input type="url" id="url" class="join-input" placeholder="사진으로 사용할 이미지 주소를 입력해주세요">
-                <input type="text" id="name" class="join-input" placeholder="사용자 이름">
+                <input id="id" type="text" class="join-input" placeholder="아이디를 입력하세요">
+                <input id="pw" type="text" class="join-input" placeholder="비밀번호를 입력하세요">
+                <input id="url" type="url" class="join-input" placeholder="사진으로 사용할 이미지 주소를 입력해주세요">
+                <input id="name" type="text" class="join-input" placeholder="사용자 이름">
                 <textarea id="desc" class="join-input" cols="30" rows="2" placeholder="자기자신을 소개해주세요!"></textarea>
                 <!--textarea를 input으로 바꾸고 나중에 마이페이지에서 자기소개글 수정하게 해도 될것같아요!-->
                 <!-- <input id="desc" class="join-input" placeholder="자기자신을 소개해주세요!">-->
             </div>
-            <button>가입</button>
+            <button onclick = "join()">가입</button>
         </div>
     </div>
 </body>
