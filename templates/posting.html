@@ -8,10 +8,25 @@
     <title>인스타그램 새 게시물 올리기 </title>
     <!-- jQuery를 import 합니다 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <link rel="stylesheet" href="/static/css/join.css">
 
     <script>
-        
+        function Posting() {
+            let id = $('#id').val()
+            let url = $('#url').val()
+            let desc = $('#desc').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/posting',
+                data: {id_give : id, url_give : url, desc_give : desc},//아이디,사진url,소개
+                success: function (response) {//반환잘받으면
+                    alert(response['msg'])
+                    window.location.reload();
+                }
+            })
+        }
     </script>
 </head>
 
@@ -28,7 +43,7 @@
                 <textarea id="desc" class="join-input" cols="30" rows="2" placeholder="사진의 설명을 적어주세요!"></textarea>
 
             </div>
-            <button onclick = "posting()">새 게시물 생성</button>
+            <button onclick="posting()">새 게시물 생성</button>
         </div>
     </div>
 </body>
