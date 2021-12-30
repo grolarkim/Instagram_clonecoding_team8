@@ -6,10 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인스타그램 로그인화면 </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
     <link rel="stylesheet" href="/static/css/login.css">
 
-    <style>
-    </style>
+    <script>
+        function login() {
+            let id = $('#id').val()
+            let pw = $('#pw').val()
+            $.ajax({
+                type: 'POST',
+                url: '/api/login',
+                data: {id_give : id, pw_give : pw}//아이디,비밀번호 받아서 넘겨주기
+                success: function (response) {//반환잘받으면
+                    if (response['result'] == 'success') {//id,pw가 DB와 일치한다면
+                        $.cookie('mytoken', response['token'], {path: '/'});//쿠키에 토큰을 넘겨주고,
+                        window.location.replace("/")
+                    } else {//id,pw가 DB와 불일치하면
+                        alert(response['msg'])
+                        window.location.replace("/login")
+                    }
+                }
+            })
+        }
+
+    </script>
 
 </head>
 <body>
@@ -23,14 +45,15 @@
                 <div id = "login_div">
                     <input type="text" id="id" class="login-input" placeholder="아이디를 입력하세요">
                     <input type="text" id="pw" class="login-input" placeholder="비밀번호를 입력하세요">
-                <button>로그인</button>
+                <button onclick= "login()">로그인</button>
                 </div>
             </div>
 
             <div id="right-body-footer">
                 <div id = "join-wrapper">
                     <p>계정이 없으신가요?</p>
-                    <a href="/signup" id="join">가입하기</a>
+                    <!--가입하기 글씨누르면 회원가입페이지로 이동하게-->
+                    <a href="/register" id="join">가입하기</a>
                 </div>
             </div>
         </div>
