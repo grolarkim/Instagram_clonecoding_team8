@@ -13,7 +13,6 @@ import hashlib
 def showIndexPage():
     return render_template('index.html')
 
-
 @app.route('/profile')
 def showProfilePage():
     return render_template('main.html')
@@ -32,16 +31,15 @@ def showPostingPage():
 
 @app.route('/api/timeline')
 def showTimeLine():
-    return 
+    return
 
 @app.route('/api/my_post')
 def showMyPost():
-    return 
+    return
 
 @app.route('/api/login')
 def Login():
-    return 
-
+    return
 
 @app.route('/api/register', methods=['POST'])
 def api_register():
@@ -61,11 +59,11 @@ def api_register():
         'desc': desc_receive
     }
     db.register.insert_one(doc)
-    return jsonify({'msg': '가입완료'}) 
+    return jsonify({'msg': '가입완료'})
 
 @app.route('/api/posting')
 def Posting():
-    return 
+    return
 
 
 
