@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
 
 app = Flask(__name__)
 
@@ -15,15 +15,42 @@ SECRET_KEY = 'SPARTA'
 
 @app.route('/')
 def showIndexPage():
-    return render_template('index.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+	    # 암호화되어있는 token의 값을 우리가 사용할 수 있도록 디코딩(암호화 풀기)해줍니다!
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.register.find_one({"id": payload['id']})
+        return render_template('index.html', user_id=user_info["id"])
+		# 만약 해당 token의 로그인 시간이 만료되었다면, 아래와 같은 코드를 실행합니다.
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("showLoginPage", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
+        return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
+    
 
 @app.route('/profile')
 def showProfilePage():
-    return render_template('main.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+	    # 암호화되어있는 token의 값을 우리가 사용할 수 있도록 디코딩(암호화 풀기)해줍니다!
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.register.find_one({"id": payload['id']})
+        return render_template('main.html', user_id=user_info["id"])
+		# 만약 해당 token의 로그인 시간이 만료되었다면, 아래와 같은 코드를 실행합니다.
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("showLoginPage", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
+        return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
+    
+
+
 
 @app.route('/login')
 def showLoginPage():
-    return render_template('login.html')
+    msg = request.args.get("msg")
+    return render_template('login.html', msg=msg)
 
 @app.route('/register')
 def showRegisterPage():
@@ -31,7 +58,18 @@ def showRegisterPage():
 
 @app.route('/posting')
 def showPostingPage():
-    return render_template('posting.html')
+    token_receive = request.cookies.get('mytoken')
+    try:
+	    # 암호화되어있는 token의 값을 우리가 사용할 수 있도록 디코딩(암호화 풀기)해줍니다!
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.register.find_one({"id": payload['id']})
+        return render_template('posting.html', user_id=user_info["id"])
+		# 만약 해당 token의 로그인 시간이 만료되었다면, 아래와 같은 코드를 실행합니다.
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("showLoginPage", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
+        return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
 
 @app.route('/api/timeline')
 def showTimeLine():

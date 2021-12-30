@@ -11,7 +11,21 @@
     <link rel="stylesheet" href="/static/css/join.css">
 
     <script>
-        
+        function posting() {
+            let id = $('#posting_btn').val()
+            let url = $('#url').val()
+            let desc = $('#desc').val()
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/posting',
+                data: {id_give : id, url_give : url, desc_give : desc},//아이디,사진url,소개
+                success: function (response) {//반환잘받으면
+                    alert(response['msg'])
+                    window.location.href = "/";
+                }
+            })
+        }
     </script>
 </head>
 
@@ -19,7 +33,7 @@
     <div id ="container">
         <div id = "img-text-wrapper">
             <img src="/static/images/insta-logo.png">
-            <p>경수없는 경수팀의 인스타그램페이지에 새 게시물을 올리세요!</p>
+            <p>{{user_id}}님 경수없는 경수팀의 인스타그램페이지에 새 게시물을 올리세요!</p>
         </div>
 
         <div id = "input-div">
@@ -28,7 +42,10 @@
                 <textarea id="desc" class="join-input" cols="30" rows="2" placeholder="사진의 설명을 적어주세요!"></textarea>
 
             </div>
-            <button onclick = "posting()">새 게시물 생성</button>
+
+            <button onclick="posting()" id="posting_btn" value="{{user_id}}">새 게시물 생성</button>
+            <button onclick="location.href='/'">돌아가기</button>
+
         </div>
     </div>
 </body>
