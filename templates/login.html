@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="/static/css/login.css">
 
     <script>
-        // {% if msg %}
-        // alert("{{ msg }}")
-        // {% endif %}
+        
+        {% if msg %}
+        alert("{{ msg }}")
+        {% endif %}
 
         // ['쿠키'라는 개념에 대해 알아봅시다]
         // 로그인을 구현하면, 반드시 쿠키라는 개념을 사용합니다.
@@ -31,7 +32,8 @@
                     if (response['result'] == 'success') {
                         // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
                         // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
-                        $.cookie('mytoken', response['token']);
+                        // console.log(response['token'])
+                        $.cookie('mytoken', response['token']);                        
 
                         alert('로그인 완료!')
                         window.location.href='/'
