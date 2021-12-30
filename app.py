@@ -40,7 +40,7 @@ def showTimeLine():
 def showMyPost():
     return
 
-@app.route('/api/login')#로그인
+@app.route('/api/login', methods=['POST'])#로그인
 def Login():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
