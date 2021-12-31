@@ -100,7 +100,7 @@ span{
     border-radius: 50%;
     padding: 2px;
     border: 2px solid #dadada;
-    background: url('../images/고길동 프사.png') no-repeat;
+    /* background: url('../images/고길동 프사.png') no-repeat; */
     background-position: center;
     background-size: cover;
 }

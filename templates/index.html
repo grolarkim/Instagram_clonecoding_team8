@@ -9,9 +9,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>인스타그램 메인화면</title>
     <link rel="stylesheet" href="static\css\style.css">
+    <script src="static\js\log.js"></script>
 
-    <style>
-    </style>
+    <script>
+        $(document).ready(
+            showStory()
+        )
+
+        function showStory() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/timeline',
+                data: {},
+                success: function (response) {
+                    let user_img_url = response['user_img_url']
+                    let user_name = response['user_name']
+
+                    let temp_story = `
+                        <div class="story_wrap">
+                            <div class="story_pic" style="background: url('${user_img_url}') no-repeat;background-position: center; background-size: cover;">
+                            </div>
+                            <p class="story_name">
+                                ${user_name}
+                            </p>
+                        </div>
+                    `
+                    $('#stories_container').append(temp_story)
+                }
+            })
+        }
+        
+    </script>
 
 </head>
 
@@ -30,7 +58,7 @@
                     <a href="/" class="icons" id="home_pc"></a>
                     <a href="" class="icons" id="dm_pc"></a>
                     <a href="/posting" class="icons" id="trend_pc"></a>
-                    <a href="" class="icons" id="heart_pc"></a>
+                    <a href="javascript:logout()" class="icons" id="heart_pc"></a>
                     <a href="/profile" class="icons" id="more_pc"></a>
                                         
                 </div>
@@ -51,7 +79,7 @@
         </header>
         <div class="upper_container">
             <div class="container">
-                <div class="stories_container">
+                <div class="stories_container" id="stories_container">
                     <div class="story_wrap">
                         <div class="story_pic">
 
@@ -61,70 +89,7 @@
                         </p>
 
                     </div>
-                    <div class="story_wrap">
-                        <div class="story_pic border_gradation">
-
-                        </div>
-                        <p class="story_name">
-                            둘리 1
-                        </p>
-
-                    </div>
-
-                    <div class="story_wrap">
-                        <div class="story_pic">
-
-                        </div>
-                        <p class="story_name">
-                            고길동 2
-                        </p>
-
-                    </div>
-                    <div class="story_wrap">
-                        <div class="story_pic border_gradation">
-
-                        </div>
-                        <p class="story_name">
-                            둘리 2
-                        </p>
-
-                    </div>
-                    <div class="story_wrap">
-                        <div class="story_pic">
-
-                        </div>
-                        <p class="story_name">
-                            고길동 3
-                        </p>
-
-                    </div>
-                    <div class="story_wrap">
-                        <div class="story_pic border_gradation">
-
-                        </div>
-                        <p class="story_name">
-                            둘리 3
-                        </p>
-
-                    </div>
-                    <div class="story_wrap">
-                        <div class="story_pic">
-
-                        </div>
-                        <p class="story_name">
-                            고길동 4
-                        </p>
-
-                    </div>
-                    <div class="story_wrap">
-                        <div class="story_pic border_gradation">
-
-                        </div>
-                        <p class="story_name">
-                            둘리 4
-                        </p>
-
-                    </div>
+                    
                 </div>
                 <div class="post_container">
                     <div class="post_head">
