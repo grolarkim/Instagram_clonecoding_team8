@@ -3,7 +3,7 @@ from flask import Flask, render_template, jsonify, request, session, redirect, u
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://tester:sparta@cluster0.hntfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 27017)
+client = MongoClient('mongodb+srv://tester:sparta@cluster0.hntfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 db = client.dbsparta
 
 import hashlib #pw해시함수화 위해 임포트
@@ -72,22 +72,14 @@ def showPostingPage():
 @app.route('/api/timeline', methods=['GET'])
 def showTimeLine():
     return
-@app.route('/api/my_post')
+@app.route('/api/my_post', methods=['GET'])
 def showMyPost():
     token_receive = request.cookies.get('mytoken')
-    try:
-        # 암호화되어있는 token의 값을 우리가 사용할 수 있도록 디코딩(암호화 풀기)해줍니다!
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        users = db.register.find({"id": payload['id']})
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    user_infos = list(db.register.find({'id': payload['id']},{'_id':False}))
+    post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
 
-        return jsonify({'users': users})
-
-    # 만약 해당 token의 로그인 시간이 만료되었다면, 아래와 같은 코드를 실행합니다.
-    except jwt.ExpiredSignatureError:
-        return redirect(url_for("showLoginPage", msg="로그인 시간이 만료되었습니다."))
-    except jwt.exceptions.DecodeError:
-        # 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
-        return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
+    return jsonify({'user_infos': user_infos, 'post_list' : post_list })
 
 
 @app.route('/api/login', methods=['POST'])
