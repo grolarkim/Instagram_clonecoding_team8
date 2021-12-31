@@ -28,6 +28,7 @@
                     let desc = response['user_infos'][0]['desc']
                     let url = response['user_infos'][0]['url']
                     let id = response['user_infos'][0]['id']
+                    let post_count = response['post_list'].length
                     let info_html = `<div class="profile_img">
                                             <img src="${url}" alt="">
                                         </div>
@@ -42,15 +43,15 @@
                                             <div class="area_text">
                                                 <div class="tit_desc">
                                                     <span class="title">게시물</span>
-                                                    <span class="sub_title">7</span>
+                                                    <span class="sub_title">${post_count}</span>
                                                 </div>
                                                 <div class="tit_desc">
                                                     <span class="title">팔로워</span>
-                                                    <span class="sub_title">10</span>
+                                                    <span class="sub_title">0</span>
                                                 </div>
                                                 <div class="tit_desc">
                                                     <span class="title">팔로우</span>
-                                                    <span class="sub_title">15</span>
+                                                    <span class="sub_title"></span>
                                                 </div>
                                             </div>
                                             <div class="area_text profile_info">
@@ -134,6 +135,18 @@
             <div class="container">
                 <div id="profile" class="profile">
                 </div>
+            <div id="edit-container">
+                <div id="edit-wrapper">
+                    <div class="edit-info">
+                        <p>이름을 변경</p>
+                        <input id="name-change" type="text" placeholder="변경할 이름을 입력하세요">
+                    </div>
+                    <div class="edit-info">
+                        <p> 자기소개를 변경해보세요!</p>
+                        <textarea id="desc-change" cols="60" rows="3" placeholder="변경할 내용을 입력해주세요!"> </textarea>
+                    </div>
+                </div>
+            </div>
                 <!------profile------>
                 <div class="contents">
                     <div class="tab_box">
