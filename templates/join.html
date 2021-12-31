@@ -19,7 +19,7 @@
             let name = $('#name').val()
             let desc = $('#desc').val()
 
-             $.ajax({
+            $.ajax({
                 type: 'POST',
                 url: '/api/register',
                 data: {id_give : id, pw_give : pw, url_give : url, name_give : name, desc_give : desc},//아이디,비밀번호,사진url,사용자이름,소개

@@ -96,7 +96,7 @@ def showMyPost():
     # 포스트 데이터 베이스에서 유저가 작성한 포스트 출력
     post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
     return jsonify({'user_infos': user_infos, 'post_list' : post_list })
-  
+
 
 
 @app.route('/api/login', methods=['POST'])
