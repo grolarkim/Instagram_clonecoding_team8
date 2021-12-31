@@ -152,10 +152,12 @@ def Posting():
     id_receive = request.form['id_give']
     url_receive = request.form['url_give']
     desc_receive = request.form['desc_give']
+    save_time = str(datetime.datetime.utcnow())
     doc = {
         'id': id_receive,
         'url': url_receive,
-        'desc': desc_receive
+        'desc': desc_receive,
+        'time': save_time
     }
     db.post.insert_one(doc)
     return jsonify({'msg': '게시물 생성 완료!'}) 
