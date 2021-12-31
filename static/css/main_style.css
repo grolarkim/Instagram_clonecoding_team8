@@ -207,6 +207,7 @@
 
 .contents .boards {
     display:flex;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 .contents .boards .board_list {
