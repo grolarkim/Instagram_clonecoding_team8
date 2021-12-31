@@ -49,50 +49,52 @@
                     let name = response['user_infos'][0]['name']
                     for (let i = 0; i < response['post_list'].length; i++) {
                         let post = response['post_list'][i]['url']
-                        let post_html = `<div class="post_head">
-                        <div class="post_title" >
-                            <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
-                        </div>
-                        <p class="title_name">
-                            ${name}
-                        </p>
-                        </div>
-                        <div class="icon more">
-                        </div>
-                    </div>
-                    <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
-
-                    </div>
-                    <div class="post_wrap">
-                        <div class="post_btns">
-                            <div class="like_reply_message">
-                                <div class="icon heart">
+                        let post_html = `
+                            <div class="post_container" >
+                                <div class="post_head">
+                                    <div class="post_title" >
+                                        <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
+                                        </div>
+                                        <p class="title_name">
+                                            ${name}
+                                        </p>
+                                    </div>
+                                    <div class="icon more">
+                                    </div>
                                 </div>
-                                <div class="icon re">
+                                <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
                                 </div>
-                                <div class="icon mess">
-                                </div>
-                            </div>
-                            <div class="icon bookmark">
-                            </div>
-                        </div>
-                        <div class="likes">
-                            <div class="like_pic"></div>
-                            <p>
-                                <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <p>
-                                <span>둘리</span> 호이~
-                            </p>
-                            <p> </p>
-                        </div>
-                        <div class="time">
-                            <p> 6시간전 </p>
-                        </div>
-                    </div>
-                </div>`
+                                <div class="post_wrap">
+                                    <div class="post_btns">
+                                        <div class="like_reply_message">
+                                            <div class="icon heart">
+                                            </div>
+                                            <div class="icon re">
+                                            </div>
+                                            <div class="icon mess">
+                                            </div>
+                                        </div>
+                                        <div class="icon bookmark">
+                                        </div>
+                                    </div>
+                                    <div class="likes">
+                                        <div class="like_pic"></div>
+                                            <p>
+                                                <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
+                                            </p>
+                                        </div>
+                                        <div class="reply">
+                                            <p>
+                                                <span>둘리</span> 호이~
+                                            </p>
+                                            <p> </p>
+                                        </div>
+                                        <div class="time">
+                                            <p> 6시간전 </p>
+                                        </div>
+                                    </div>
+                                </div>                                    
+                            </div>`
                         $('#my_post').append(post_html)
                     }
                 }
@@ -141,18 +143,9 @@
             </div>
         </header>
         <div class="upper_container">
-            <div class="container">
+            <div class="container" id="my_post">
                 <div class="stories_container" id="my_story">
-
                 </div>
-                <div class="post_container" id="my_post">
-
-
-
-                </div>
-
-
-
             </div>
             <aside class="aside_container">
                 <div class="aside_header">
@@ -238,25 +231,24 @@
                 </div>
 
             </aside>
-            <footer class="mobile_footer">
-                <div class="foot_btn" id="home">
-
-                </div>
-                <div class="foot_btn" id="search">
-
-                </div>
-                <div class="foot_btn" id="plus">
-
-                </div>
-                <div class="foot_btn" id="like">
-
-                </div>
-                <div class="foot_btn" id="home2">
-
-                </div>
-            </footer>
-
         </div>
+        <footer class="mobile_footer">
+            <div class="foot_btn" id="home">
+
+            </div>
+            <div class="foot_btn" id="search">
+
+            </div>
+            <div class="foot_btn" id="plus">
+
+            </div>
+            <div class="foot_btn" id="like">
+
+            </div>
+            <div class="foot_btn" id="home2">
+
+            </div>
+        </footer>
 
 </body>
 

@@ -89,7 +89,7 @@ span{
 .stories_container .story_wrap{
     width: 60px;
     height: 100%;
-    margin: 12px 10px 0px 8px;
+    margin: 12px 15px 0px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
