@@ -3,7 +3,7 @@ from flask import Flask, render_template, jsonify, request, session, redirect, u
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('localhost', 27017)
+client = MongoClient('mongodb+srv://tester:sparta@cluster0.hntfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 27017)
 db = client.dbsparta
 
 import hashlib #pw해시함수화 위해 임포트
@@ -43,8 +43,6 @@ def showProfilePage():
     except jwt.exceptions.DecodeError:
 		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
         return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
-    
-
 
 
 @app.route('/login')
@@ -71,13 +69,26 @@ def showPostingPage():
 		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
         return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
 
-@app.route('/api/timeline')
+@app.route('/api/timeline', methods=['GET'])
 def showTimeLine():
     return
-
 @app.route('/api/my_post')
 def showMyPost():
-    return
+    token_receive = request.cookies.get('mytoken')
+    try:
+        # 암호화되어있는 token의 값을 우리가 사용할 수 있도록 디코딩(암호화 풀기)해줍니다!
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        users = db.register.find({"id": payload['id']})
+
+        return jsonify({'users': users})
+
+    # 만약 해당 token의 로그인 시간이 만료되었다면, 아래와 같은 코드를 실행합니다.
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("showLoginPage", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        # 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
+        return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
+
 
 @app.route('/api/login', methods=['POST'])
 def Login():
@@ -98,7 +109,7 @@ def Login():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=6000)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
