@@ -162,6 +162,26 @@
 } */
 /* // profile */
 
+/* 프로필 변경창*/
+#edit-container{
+    background-color: white;
+    max-width: 800px;
+    width: 500px;
+    height: 200px;
+    border: 1px solid lightslategray;
+    border-radius: 5px;
+
+}
+#edit-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    height: 150px;
+}
+#edit-wrapper .edit-info{
+
+}
 /* contents */
 .contents {
     border-top: 1px solid #dbdbdb;
