@@ -10,6 +10,82 @@
     <link rel="stylesheet" href="/static/css/reset.css">
     <link rel="stylesheet" href="/static/css/main_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+<script>
+     $(document).ready(function () {
+            show_me();
+            show_pic();
+        });
+
+        function show_me() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/my_post',
+                data: {},
+                success: function (response) {
+                    let name = response['user_infos'][0]['name']
+                    let desc = response['user_infos'][0]['desc']
+                    let url = response['user_infos'][0]['url']
+                    let id = response['user_infos'][0]['id']
+                    let info_html = `<div class="profile_img">
+                                        <img src="${url}" alt="">
+                                    </div>
+                                    <div class="info">
+                                        <div class="area_text">
+                                            <h2 class="user_id">${name}</h2>
+                                            <a href="" class="profile_edit">프로필 편집</a>
+                                            <button type="button" class="setting_btn">
+                                                <i class="fas fa-cog"></i>
+                                            </button>
+                                        </div>
+                                        <div class="area_text">
+                                            <div class="tit_desc">
+                                                <span class="title">게시물</span>
+                                                <span class="sub_title">7</span>
+                                            </div>
+                                            <div class="tit_desc">
+                                                <span class="title">팔로워</span>
+                                                <span class="sub_title">10</span>
+                                            </div>
+                                            <div class="tit_desc">
+                                                <span class="title">팔로우</span>
+                                                <span class="sub_title">15</span>
+                                            </div>
+                                        </div>
+                                        <div class="area_text profile_info">
+                                            <h3 class="info_title">${id}</h3>
+                                            <p class="info_sub">${desc}</p>
+                                        </div>
+                                    </div>
+                                </div>`
+                    $('#profile').append(info_html)
+                    }
+            })
+        }
+        function show_pic() {
+        $.ajax({
+            type: 'GET',
+            url: '/api/my_post',
+            data: {},
+            success: function (response) {
+                let rows = response['post_list']
+                for (i=0; i < rows.length; i++){
+                    let pic = rows[i]['url']
+                    let pic_html = `<ul class="board_list">
+                                        <li>
+                                            <a href="">
+                                                <div class="board_img">
+                                                    <img src="${pic}" alt="배경 이미지">
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>`
+                    $('#photos').append(pic_html)
+                }
+                }
+            })
+        }
+</script>
+
 </head>
 <body>
     <div class="wrap">
@@ -53,40 +129,8 @@
     <!------header------>
     <div class="main">
         <div class="container">
-
-            <div class="profile">
-                <div class="profile_img">
-                    <img src="/static/images/고길동%20프사.png" alt="">
-                </div>
-                <div class="info">
-                    <div class="area_text">
-                        <h2 class="user_id">고길동</h2>
-                        <a href="" class="profile_edit">프로필 편집</a>
-                        <button type="button" class="setting_btn">
-                            <i class="fas fa-cog"></i>
-                        </button>
-                    </div>
-                    <div class="area_text">
-                        <div class="tit_desc">
-                            <span class="title">게시물</span>
-                            <span class="sub_title">7</span>
-                        </div>
-                        <div class="tit_desc">
-                            <span class="title">팔로워</span>
-                            <span class="sub_title">10</span>
-                        </div>
-                        <div class="tit_desc">
-                            <span class="title">팔로우</span>
-                            <span class="sub_title">15</span>
-                        </div>
-                    </div>
-                    <div class="area_text profile_info">
-                        <h3 class="info_title">Gildong Ko</h3>
-                        <p class="info_sub">혼자있고 싶어요</p>
-                    </div>
-                </div>
+            <div id = "profile" class="profile">
             </div>
-
             <!------profile------>
             <div class="contents">
                 <div class="tab_box">
@@ -117,51 +161,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="boards">
-                    <ul class="board_list">
-                        <li>
-                            <a href="">
-                                <div class="board_img">
-                                    <img src="/static/images/고길동%20배경.png" alt="배경 이미지">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="board_img">
-                                    <img src="/static/images/고길동%20배경.png" alt="배경 이미지">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="board_img">
-                                    <img src="/static/images/고길동%20배경.png" alt="배경 이미지">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="board_img">
-                                    <img src="/static/images/둘리.png" alt="둘리 이미지">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="board_img">
-                                    <img src="/static/images/둘리.png" alt="둘리 이미지">
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <div class="board_img">
-                                    <img src="/static/images/둘리.png" alt="둘리 이미지">
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                <div id ="photos" class="boards">
                 </div>
             </div>
             <!------contents------>
