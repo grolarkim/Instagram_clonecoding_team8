@@ -156,7 +156,7 @@ def Posting():
     id_receive = request.form['id_give']
     url_receive = request.form['url_give']
     desc_receive = request.form['desc_give']
-    save_time = str(datetime.datetime.utcnow())
+    save_time = request.form['time_give']
     doc = {
         'id': id_receive,
         'url': url_receive,
