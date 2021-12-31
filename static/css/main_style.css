@@ -206,6 +206,7 @@
 }
 
 .contents .boards {
+    display:flex;
     margin-top: 20px;
 }
 .contents .boards .board_list {
