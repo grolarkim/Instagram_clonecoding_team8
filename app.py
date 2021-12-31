@@ -69,17 +69,34 @@ def showPostingPage():
 		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
         return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
 
+
+######### 이 밑으로는 api  ###############
+
 @app.route('/api/timeline', methods=['GET'])
 def showTimeLine():
-    return
-@app.route('/api/my_post', methods=['GET'])
-def showMyPost():
+    # 로그인 되어있는 아이디의 값을 쿠키를 통해 얻음
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    user_infos = list(db.register.find({'id': payload['id']},{'_id':False}))
+    # 데이터베이스에서 일치하는 아이디 검색
+    user_info = db.register.find_one({"id": payload['id']})
+    # 유저 정보 
+    profile_img_url = user_info['url']
+    profile_name = user_info['name']
+    # 포스트 데이터 베이스에서 유저가 작성한 포스트 출력
     post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
+    return jsonify({'user_img_url': profile_img_url, 'user_name': profile_name , 'post_list': post_list})
 
+@app.route('/api/my_post', methods=['GET'])
+def showMyPost():
+    # 로그인 되어있는 아이디의 값을 쿠키를 통해 얻음
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    # 데이터베이스에서 일치하는 아이디 검색하여 유저 정보 얻음
+    user_infos = list(db.register.find({'id': payload['id']},{'_id':False}))
+    # 포스트 데이터 베이스에서 유저가 작성한 포스트 출력
+    post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
     return jsonify({'user_infos': user_infos, 'post_list' : post_list })
+  
 
 
 @app.route('/api/login', methods=['POST'])
@@ -101,7 +118,7 @@ def Login():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=6000)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=600)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 

@@ -172,3 +172,5 @@ git clone 은 github 저장소를 만든 사람이 아니라 협업에 참여할
 파일 단위로 팀원 간 역할 분배
 
 1229 html css
+
+image url CORB issue
