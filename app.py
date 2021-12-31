@@ -164,7 +164,20 @@ def Posting():
         'time': save_time
     }
     db.post.insert_one(doc)
-    return jsonify({'msg': '게시물 생성 완료!'}) 
+    return jsonify({'msg': '게시물 생성 완료!'})
+
+@app.route('/api/profile_update', methods=['POST'])
+def Update():
+    # 로그인 되어있는 아이디의 값을 쿠키를 통해 얻음
+    token_receive = request.cookies.get('mytoken')
+    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+    #url은 변경쪽에 구현이 안되어서 뺐습니다ㅠㅠ
+    doc = {
+        'name' : request.form['name_give'],
+        'desc' : request.form['desc_give']
+    }
+    db.register.update_one({'id': payload['id']}, {'$set': doc})
+    return jsonify({'msg': '프로필 변경 완료!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
