@@ -81,7 +81,9 @@ def showTimeLine():
     user_infos = list(db.register.find({'id': payload['id']},{'_id':False}))
     # 포스트 데이터 베이스에서 유저가 작성한 포스트 출력
     post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
-    return jsonify({'user_infos': user_infos, 'post_list' : post_list })
+    # 시간의 역순으로 리스트 정렬
+    post_list_r = sorted(post_list, key=(lambda x: x['time']), reverse= True)
+    return jsonify({'user_infos': user_infos, 'post_list' : post_list_r })
 
 
 
@@ -94,7 +96,9 @@ def showMyPost():
     user_infos = list(db.register.find({'id': payload['id']},{'_id':False}))
     # 포스트 데이터 베이스에서 유저가 작성한 포스트 출력
     post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
-    return jsonify({'user_infos': user_infos, 'post_list' : post_list })
+    # 시간의 역순으로 리스트 정렬
+    post_list_r = sorted(post_list, key=(lambda x: x['time']), reverse= True)
+    return jsonify({'user_infos': user_infos, 'post_list' : post_list_r })
 
 
 
