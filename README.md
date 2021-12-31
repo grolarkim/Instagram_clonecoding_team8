@@ -1,6 +1,8 @@
 # Instagram_clonecoding_team8
 인스타그램 클론 코딩 팀프로젝트입니다.
 
+![GitHub last commit](https://img.shields.io/github/last-commit/grolarkim/Instagram_clonecoding_team8?style=plastic)
+
 ------------
 
 # 인스타그램 클론 코딩
