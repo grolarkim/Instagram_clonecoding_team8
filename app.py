@@ -86,6 +86,7 @@ def showTimeLine():
     post_list = list(db.post.find({'id': payload['id']},{'_id':False}))
     return jsonify({'user_img_url': profile_img_url, 'user_name': profile_name , 'post_list': post_list})
 
+
 @app.route('/api/my_post', methods=['GET'])
 def showMyPost():
     # 로그인 되어있는 아이디의 값을 쿠키를 통해 얻음
