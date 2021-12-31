@@ -40,6 +40,9 @@
         }
 
         function show_post() {
+            let d = new Date()
+            time_now = d.getTime()
+            time_now *= 1
             $.ajax({
                 type: 'GET',
                 url: '/api/timeline',
@@ -49,6 +52,23 @@
                     let name = response['user_infos'][0]['name']
                     for (let i = 0; i < response['post_list'].length; i++) {
                         let post = response['post_list'][i]['url']
+                        let post_time = response['post_list'][i]['time']
+                        
+                        let time = time_now - post_time
+                        let minute = parseInt(time / 60000)
+                        let t
+                        if (minute < 60) {
+                            t = String(minute) + "분 전"
+                        } else if (minute < 1440) {
+                            t = String(parseInt(minute/60)) + "시간 전"
+                        } else if (minute < 43200) {
+                            t = String(parseInt(minute/1440)) + "일 전"
+                        } else if (minute < 525600) {
+                            t = String(parseInt(minute/43200)) + "달 전"
+                        } else {
+                            t = String(parseInt(minute/525600)) + "년 전"
+                        }
+                        
                         let post_html = `
                             <div class="post_container" >
                                 <div class="post_head">
@@ -90,7 +110,7 @@
                                             <p> </p>
                                         </div>
                                         <div class="time">
-                                            <p> 6시간전 </p>
+                                            <p> ${t} </p>
                                         </div>
                                     </div>
                                 </div>                                    
