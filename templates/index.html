@@ -9,37 +9,100 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>인스타그램 메인화면</title>
     <link rel="stylesheet" href="static\css\style.css">
-    <script src="static\js\log.js"></script>
-
     <script>
-        $(document).ready(
-            showStory()
-        )
+        $(document).ready(function () {
+            show_story();
+            show_post();
+        });
 
-        function showStory() {
+        function show_story() {
             $.ajax({
                 type: 'GET',
                 url: '/api/timeline',
                 data: {},
                 success: function (response) {
-                    let user_img_url = response['user_img_url']
-                    let user_name = response['user_name']
+                    let url = response['user_infos'][0]['url']
+                    let name = response['user_infos'][0]['name']
+                    let story_html = `<div class="story_wrap">
+                        <div class="story_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
 
-                    let temp_story = `
-                        <div class="story_wrap">
-                            <div class="story_pic" style="background: url('${user_img_url}') no-repeat;background-position: center; background-size: cover;">
+                        </div>
+                        <p class="story_name">
+                            ${name}
+                        </p>
+
+                    </div>`
+                    $('#my_story').append(story_html)
+
+                }
+
+            })
+        }
+
+        function show_post() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/timeline',
+                data: {},
+                success: function (response) {
+                    let url = response['user_infos'][0]['url']
+                    let name = response['user_infos'][0]['name']
+                    for (let i = 0; i < length(response['post_list']); i++) {
+                        let post = response['post_list'][i]['url']
+                        let post_html = `<div class="post_head">
+                        <div class="post_title" >
+                            <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
+                        </div>
+                        <p class="title_name">
+                            ${name}
+                        </p>
+                        </div>
+                        <div class="icon more">
+                        </div>
+                    </div>
+                    <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
+
+                    </div>
+                    <div class="post_wrap">
+                        <div class="post_btns">
+                            <div class="like_reply_message">
+                                <div class="icon heart">
+                                </div>
+                                <div class="icon re">
+                                </div>
+                                <div class="icon mess">
+                                </div>
                             </div>
-                            <p class="story_name">
-                                ${user_name}
+                            <div class="icon bookmark">
+                            </div>
+                        </div>
+                        <div class="likes">
+                            <div class="like_pic"></div>
+                            <p>
+                                <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
                             </p>
                         </div>
-                    `
-                    $('#stories_container').append(temp_story)
+                        <div class="reply">
+                            <p>
+                                <span>둘리</span> 호이~
+                            </p>
+                            <p> </p>
+                        </div>
+                        <div class="time">
+                            <p> 6시간전 </p>
+                        </div>
+                    </div>
+                </div>`
+                        $('#my_post').append(post_html)
+                    }
                 }
             })
         }
-        
+
     </script>
+
+    <style>
+    </style>
 
 </head>
 
@@ -58,9 +121,9 @@
                     <a href="/" class="icons" id="home_pc"></a>
                     <a href="" class="icons" id="dm_pc"></a>
                     <a href="/posting" class="icons" id="trend_pc"></a>
-                    <a href="javascript:logout()" class="icons" id="heart_pc"></a>
+                    <a href="" class="icons" id="heart_pc"></a>
                     <a href="/profile" class="icons" id="more_pc"></a>
-                                        
+
                 </div>
             </div>
 
@@ -79,186 +142,16 @@
         </header>
         <div class="upper_container">
             <div class="container">
-                <div class="stories_container" id="stories_container">
-                    <div class="story_wrap">
-                        <div class="story_pic">
-
-                        </div>
-                        <p class="story_name">
-                            고길동 1
-                        </p>
-
-                    </div>
-                    
-                </div>
-                <div class="post_container">
-                    <div class="post_head">
-                        <div class="post_title">
-                            <div class="title_pic">
-
-                            </div>
-                            <p class="title_name">
-                                <span>고길동</span>
-                            </p>
-
-                        </div>
-                        <div class="icon more">
-
-                        </div>
-
-                    </div>
-                    <div class="post_pic">
-
-                    </div>
-                    <div class="post_wrap">
-                        <div class="post_btns">
-                            <div class="like_reply_message">
-                                <div class="icon heart">
-
-                                </div>
-                                <div class="icon re">
-
-                                </div>
-                                <div class="icon mess">
-
-                                </div>
-                            </div>
-                            <div class="icon bookmark">
-
-                            </div>
-                        </div>
-                        <div class="likes">
-                            <div class="like_pic"></div>
-                            <p>
-                                <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <p>
-                                <span>둘리</span> 호이~
-                            </p>
-                            <p> </p>
-                        </div>
-                        <div class="time">
-                            <p> 6시간전 </p>
-
-                        </div>
-
-                    </div>
+                <div class="stories_container" id="my_story">
 
                 </div>
-                <div class="post_container">
-                    <div class="post_head">
-                        <div class="post_title">
-                            <div class="title_pic">
+                <div class="post_container" id="my_post">
 
-                            </div>
-                            <p class="title_name">
-                                <span>고길동</span>
-                            </p>
 
-                        </div>
-                        <div class="icon more">
-
-                        </div>
-
-                    </div>
-                    <div class="post_pic">
-
-                    </div>
-                    <div class="post_wrap">
-                        <div class="post_btns">
-                            <div class="like_reply_message">
-                                <div class="icon heart">
-
-                                </div>
-                                <div class="icon re">
-
-                                </div>
-                                <div class="icon mess">
-
-                                </div>
-                            </div>
-                            <div class="icon bookmark">
-
-                            </div>
-                        </div>
-                        <div class="likes">
-                            <div class="like_pic"></div>
-                            <p>
-                                <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <p>
-                                <span>둘리</span> 호이~
-                            </p>
-                            <p> </p>
-                        </div>
-                        <div class="time">
-                            <p> 6시간전 </p>
-
-                        </div>
-
-                    </div>
 
                 </div>
-                <div class="post_container">
-                    <div class="post_head">
-                        <div class="post_title">
-                            <div class="title_pic">
 
-                            </div>
-                            <p class="title_name">
-                                <span>고길동</span>
-                            </p>
 
-                        </div>
-                        <div class="icon more">
-
-                        </div>
-
-                    </div>
-                    <div class="post_pic">
-
-                    </div>
-                    <div class="post_wrap">
-                        <div class="post_btns">
-                            <div class="like_reply_message">
-                                <div class="icon heart">
-
-                                </div>
-                                <div class="icon re">
-
-                                </div>
-                                <div class="icon mess">
-
-                                </div>
-                            </div>
-                            <div class="icon bookmark">
-
-                            </div>
-                        </div>
-                        <div class="likes">
-                            <div class="like_pic"></div>
-                            <p>
-                                <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
-                            </p>
-                        </div>
-                        <div class="reply">
-                            <p>
-                                <span>둘리</span> 호이~
-                            </p>
-                            <p> </p>
-                        </div>
-                        <div class="time">
-                            <p> 6시간전 </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
 
             </div>
             <aside class="aside_container">
@@ -345,30 +238,25 @@
                 </div>
 
             </aside>
+            <footer class="mobile_footer">
+                <div class="foot_btn" id="home">
 
+                </div>
+                <div class="foot_btn" id="search">
 
+                </div>
+                <div class="foot_btn" id="plus">
+
+                </div>
+                <div class="foot_btn" id="like">
+
+                </div>
+                <div class="foot_btn" id="home2">
+
+                </div>
+            </footer>
 
         </div>
-
-        <footer class="mobile_footer">
-            <div class="foot_btn" id="home">
-
-            </div>
-            <div class="foot_btn" id="search">
-
-            </div>
-            <div class="foot_btn" id="plus">
-
-            </div>
-            <div class="foot_btn" id="like">
-
-            </div>
-            <div class="foot_btn" id="home2">
-
-            </div>
-        </footer>
-
-    </div>
 
 </body>
 
