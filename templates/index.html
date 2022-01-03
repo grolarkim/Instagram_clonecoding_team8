@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>인스타그램 메인화면</title>
     <link rel="stylesheet" href="static\css\style.css">
+    <script src="static\js\log.js"></script>
     <script>
         $(document).ready(function () {
             show_story();
@@ -140,8 +141,7 @@
                 <div id ="head_leftside" class="btns">
                     <a href="/" class="icons" id="home_pc"></a>
                     <a href="/posting" class="icons" id="trend_pc"></a>
-                    <a href="" class="icons" id="heart_pc"></a>
-
+                    <a href="javascript:logout()" class="icons" id="heart_pc"></a>
                 </div>
             </div>
 
