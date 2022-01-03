@@ -15,10 +15,12 @@
 }
 .header .inner {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     padding: 0 20px;
+    max-width: 1000px;
+    margin: auto;
 }
 .header .inner .logo {
     display: flex;
@@ -293,7 +295,9 @@
 .contents .boards {
     display:flex;
     flex-wrap: wrap;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 0px;
 }
 .contents .boards .board_list {
     display: flex;

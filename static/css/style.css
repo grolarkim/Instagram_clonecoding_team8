@@ -257,7 +257,7 @@ span{
 
 .pc_header .head_container {
     width: 100%;
-    max-width: 960px;
+    max-width: 1000px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
