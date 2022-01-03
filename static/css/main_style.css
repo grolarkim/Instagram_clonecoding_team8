@@ -180,13 +180,14 @@
 /* .profile .info .area_text.profile_info .info_sub {
 
 } */
+/* // profile */
 
 /* 프로필 변경창*/
 #edit-container{
     background-color: white;
     max-width: 800px;
     width: 500px;
-    height: 230px;
+    height: 320px;
     border: 1.5px solid skyblue;
     border-radius: 10px;
 }
@@ -211,6 +212,18 @@
 }
 #edit-wrapper .edit-info input{
     width: 200px;
+    height: 30px;
+}
+#edit-wrapper .edit-info-url{
+    margin-top: 20px;
+    margin-left: 20px
+}
+#edit-wrapper .edit-info-url p{
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+#edit-wrapper .edit-info-url input{
+    width: 415px;
     height: 30px;
 }
 #edit-wrapper .buttons{
