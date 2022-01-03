@@ -180,7 +180,11 @@ def Update():
     db.register.update_one({'id': payload['id']}, {'$set': doc})
     return jsonify({'msg': '프로필 변경 완료!'})
 
-
+@app.route('/api/post_delete', methods=['POST'])
+def postDelete():
+    save_time = request.form['time_give']
+    db.post.delete_one({'time' : save_time})
+    return jsonify({'msg': '게시물 삭제 완료!'})
 
 
 if __name__ == '__main__':
