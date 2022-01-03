@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <title>인스타그램 메인화면</title>
     <link rel="stylesheet" href="static\css\style.css">
+    <script src="static\js\log.js"></script>
     <script>
         $(document).ready(function () {
             show_story();
@@ -33,7 +34,9 @@
 
                     </div>`
                     $('#my_story').append(story_html)
-
+                    //마이페이지로 가는 버튼을 프로필사진으로 불러올 수 있도록 바꿨습니다.
+                    let mini_profile_html = `<a href="/profile" class="icons" id="profile_pc" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;""></a>`
+                    $('#head_leftside').append(mini_profile_html)
                 }
 
             })
@@ -139,10 +142,6 @@
         }
 
     </script>
-
-    <style>
-    </style>
-
 </head>
 
 <body>
@@ -153,16 +152,13 @@
                     <div id="logo">
                     </div>
                 </a>
-                <div class="search_wrap">
-                    <input type="text" id="big_search" placeholder="   검색">
+                <div class="input_box">
+                    <input type="text" placeholder="검색" id="search">
                 </div>
-                <div class="btns">
+                <div id ="head_leftside" class="btns">
                     <a href="/" class="icons" id="home_pc"></a>
-                    <a href="" class="icons" id="dm_pc"></a>
                     <a href="/posting" class="icons" id="trend_pc"></a>
-                    <a href="" class="icons" id="heart_pc"></a>
-                    <a href="/profile" class="icons" id="more_pc"></a>
-
+                    <a href="javascript:logout()" class="icons" id="heart_pc"></a>
                 </div>
             </div>
 
