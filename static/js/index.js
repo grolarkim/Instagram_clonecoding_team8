@@ -151,7 +151,7 @@ function show_recommend() {
                             </div>
                         </div>
                         <div>
-                            <a href="" class="aside_follow">팔로우</a>
+                            <a href="" class="aside_follow"></a>
                         </div>
                     </div>
                 `
