@@ -154,6 +154,7 @@
     border-radius: 5px;
     color: #000;;
     font-size: 15px;
+    cursor: pointer;
 }
 .profile .info .area_text .setting_btn {
     border: none;
@@ -244,6 +245,7 @@
     color : white;
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
 }
 /* contents */
 .contents {
