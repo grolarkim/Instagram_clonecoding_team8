@@ -97,10 +97,11 @@
         function Update_profile() {
             let rename = $('#name-change').val()
             let redesc = $('#desc-change').val()
+            let reurl = $('#url-change').val()
             $.ajax({
                 type: 'POST',
                 url: '/api/profile_update',
-                data: {name_give : rename, desc_give: redesc},
+                data: {name_give : rename, desc_give: redesc, url_give : reurl},
                 success: function (response) {
                     alert(response['msg'])
                     window.location.reload()
@@ -109,6 +110,7 @@
         }
 
     </script>
+
 </head>
 
 <body>
@@ -140,6 +142,10 @@
                     <div class="edit-info">
                         <p>이름을 변경</p>
                         <input id="name-change" type="text" placeholder="변경할 이름을 입력하세요">
+                    </div>
+                    <div class="edit-info-url">
+                        <p>프로필 사진을 변경</p>
+                        <input id="url-change" type="url" class="join-input" placeholder="변경할 이미지 주소를 입력하세요">
                     </div>
                     <div class="edit-info">
                         <p> 자기소개를 변경해보세요!</p>
