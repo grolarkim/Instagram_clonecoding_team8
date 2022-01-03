@@ -128,6 +128,7 @@ span{
 .post_container {
     width: 100%;
     background-color: white;
+    
 }
 .post_container .icon{
     height: 22px;
@@ -494,7 +495,7 @@ span{
     }
 
     .post_container{
-        margin: 0;
+        margin: 10px 0 10px;
     }
 
     .mobile_footer {
