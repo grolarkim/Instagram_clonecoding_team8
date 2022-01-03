@@ -10,26 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <link rel="stylesheet" href="/static/css/join.css">
-
-    <script>
-        function posting() {
-            let id = $('#posting_btn').val()
-            let url = $('#url').val()
-            let desc = $('#desc').val()
-            let d = new Date()
-            let time = d.getTime()
-
-            $.ajax({
-                type: 'POST',
-                url: '/api/posting',
-                data: {id_give : id, url_give : url, desc_give : desc, time_give : time},//아이디,사진url,소개
-                success: function (response) {//반환잘받으면
-                    alert(response['msg'])
-                    window.location.href = "/";
-                }
-            })
-        }
-    </script>
+    <script src="static\js\posting.js"></script>
 </head>
 
 <body>
