@@ -71,7 +71,7 @@ function show_post() {
                                                 ${name}
                                             </p>
                                         </div>
-                                        <button class="icon more" onclick="post_delete(${post_time})">
+                                        <button class="icon more" onclick="show_modal(modal_${post_time})">
                                         </button>
                                     </div>
                                     <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
@@ -82,6 +82,13 @@ function show_post() {
                                         </div>
                                         <div class="time">
                                                 <p> ${t} </p>
+                                        </div>
+                                    </div>
+                                    <div class="ud_modal" id="modal_${post_time}">
+                                        <div class="ud_modal_window">
+                                            <button>게시물 수정</button>
+                                            <button onclick="post_delete(${post_time})">게시물 삭제</button>
+                                            <button onclick="close_modal()">닫기</button>
                                         </div>
                                     </div>
                                 </div>`
@@ -154,7 +161,11 @@ function show_recommend() {
 
 function show_modal(modal_id) {
     $(modal_id).show();
-    $('body').css("overflow", "hidden");
     $('html').css("overflow", "hidden");
 
+}
+
+function close_modal() {
+    $('.ud_modal').hide();
+    $('html').css("overflow", "auto");
 }
