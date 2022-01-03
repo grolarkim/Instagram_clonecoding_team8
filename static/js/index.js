@@ -41,60 +41,66 @@ function show_post() {
         success: function (response) {
             let url = response['user_infos'][0]['url']
             let name = response['user_infos'][0]['name']
-
-            for (let i = 0; i < response['post_list'].length; i++) {
-                let post = response['post_list'][i]['url']
-                let post_time = response['post_list'][i]['time']
-                let desc = response['post_list'][i]['desc']
-                let id = response['user_infos'][0]['id']
-                let time = time_now - post_time
-                let minute = parseInt(time / 60000)
-                let t
-                if (minute < 60) {
-                    t = String(minute) + "분 전"
-                } else if (minute < 1440) {
-                    t = String(parseInt(minute/60)) + "시간 전"
-                } else if (minute < 43200) {
-                    t = String(parseInt(minute/1440)) + "일 전"
-                } else if (minute < 525600) {
-                    t = String(parseInt(minute/43200)) + "달 전"
-                } else {
-                    t = String(parseInt(minute/525600)) + "년 전"
-                }
-
-                let post_html = `<div class="post_container" >
-                                    <div class="post_head">
-                                        <div class="post_title" >
-                                            <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
+            if (response['post_list'].length == 0) {
+                let temp_post = `
+                <button onclick="location.href='/posting'" class="need_new_posting">
+                    <p>게시물이 없어요.</p>
+                    <p class="new_po">새 게시물 생성하기</p>
+                </button>
+                `
+                $('#my_post').append(temp_post)
+            } else {
+                for (let i = 0; i < response['post_list'].length; i++) {
+                    let post = response['post_list'][i]['url']
+                    let post_time = response['post_list'][i]['time']
+                    let desc = response['post_list'][i]['desc']
+                    let id = response['user_infos'][0]['id']
+                    let time = time_now - post_time
+                    let minute = parseInt(time / 60000)
+                    let t
+                    if (minute < 60) {
+                        t = String(minute) + "분 전"
+                    } else if (minute < 1440) {
+                        t = String(parseInt(minute/60)) + "시간 전"
+                    } else if (minute < 43200) {
+                        t = String(parseInt(minute/1440)) + "일 전"
+                    } else if (minute < 525600) {
+                        t = String(parseInt(minute/43200)) + "달 전"
+                    } else {
+                        t = String(parseInt(minute/525600)) + "년 전"
+                    }
+                    let post_html = `<div class="post_container" >
+                                        <div class="post_head">
+                                            <div class="post_title" >
+                                                <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
+                                                </div>
+                                                <p class="title_name">
+                                                    ${name}
+                                                </p>
                                             </div>
-                                            <p class="title_name">
-                                                ${name}
-                                            </p>
+                                            <button class="icon more" onclick="show_modal(modal_${post_time})">
+                                            </button>
                                         </div>
-                                        <button class="icon more" onclick="show_modal(modal_${post_time})">
-                                        </button>
-                                    </div>
-                                    <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
-                                    </div>
-                                    <div class="post_wrap">
-                                        <div class="pic_desc">
-                                            <p>${desc}</p>
+                                        <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
                                         </div>
-                                        <div class="time">
-                                                <p> ${t} </p>
+                                        <div class="post_wrap">
+                                            <div class="pic_desc">
+                                                <p>${desc}</p>
+                                            </div>
+                                            <div class="time">
+                                                    <p> ${t} </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="ud_modal" id="modal_${post_time}">
-                                        <div class="ud_modal_window">
-                                            <button onclick="location.href='/post_update?time=${post_time}'">게시물 수정</button>
-                                            <button onclick="post_delete(${post_time})">게시물 삭제</button>
-                                            <button onclick="close_modal()">닫기</button>
+                                        <div class="ud_modal" id="modal_${post_time}">
+                                            <div class="ud_modal_window">
+                                                <button onclick="location.href='/post_update?time=${post_time}'">게시물 수정</button>
+                                                <button onclick="post_delete(${post_time})">게시물 삭제</button>
+                                                <button onclick="close_modal()">닫기</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>`
-
-
-                $('#my_post').append(post_html)
+                                    </div>`
+                    $('#my_post').append(post_html)
+                }
             }
         }
     })
