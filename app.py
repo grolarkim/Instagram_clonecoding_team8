@@ -174,11 +174,11 @@ def Update():
     #url은 변경쪽에 구현이 안되어서 뺐습니다ㅠㅠ
     doc = {
         'name' : request.form['name_give'],
-        'desc' : request.form['desc_give']
+        'desc' : request.form['desc_give'],
+        'url' : request.form['url_give']
     }
     db.register.update_one({'id': payload['id']}, {'$set': doc})
     return jsonify({'msg': '프로필 변경 완료!'})
-
 
 @app.route('/api/post_delete', methods=['POST'])
 def postDelete():
