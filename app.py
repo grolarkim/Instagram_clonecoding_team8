@@ -3,7 +3,7 @@ from flask import Flask, render_template, jsonify, request, session, redirect, u
 app = Flask(__name__)
 
 from pymongo import MongoClient
-client = MongoClient('mongodb+srv://tester:sparta@cluster0.hntfy.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+client = MongoClient('')
 db = client.dbsparta
 
 import hashlib #pw해시함수화 위해 임포트
