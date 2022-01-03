@@ -17,7 +17,12 @@
             show_me();
             show_pic();
         });
-
+         function open_box() {
+            $('#edit-container').show()
+        }
+         function close_box() {
+            $('#edit-container').hide()
+        }
         function show_me() {
             $.ajax({
                 type: 'GET',
@@ -28,13 +33,14 @@
                     let desc = response['user_infos'][0]['desc']
                     let url = response['user_infos'][0]['url']
                     let id = response['user_infos'][0]['id']
+                    let post_count = response['post_list'].length
                     let info_html = `<div class="profile_img">
                                             <img src="${url}" alt="">
                                         </div>
                                         <div class="info">
                                             <div class="area_text">
                                                 <h2 class="user_id">${name}</h2>
-                                                <a href="" class="profile_edit">프로필 편집</a>
+                                                <button onclick ="open_box()" class="profile_edit">프로필 편집</button>
                                                 <button type="button" class="setting_btn">
                                                     <i class="fas fa-cog"></i>
                                                 </button>
@@ -42,15 +48,15 @@
                                             <div class="area_text">
                                                 <div class="tit_desc">
                                                     <span class="title">게시물</span>
-                                                    <span class="sub_title">7</span>
+                                                    <span class="sub_title">${post_count}</span>
                                                 </div>
                                                 <div class="tit_desc">
                                                     <span class="title">팔로워</span>
-                                                    <span class="sub_title">10</span>
+                                                    <span class="sub_title">0</span>
                                                 </div>
                                                 <div class="tit_desc">
                                                     <span class="title">팔로우</span>
-                                                    <span class="sub_title">15</span>
+                                                    <span class="sub_title"></span>
                                                 </div>
                                             </div>
                                             <div class="area_text profile_info">
@@ -86,6 +92,20 @@
                 }
             })
         }
+        function Update_profile() {
+            let rename = $('#name-change').val()
+            let redesc = $('#desc-change').val()
+            $.ajax({
+                type: 'POST',
+                url: '/api/profile_update',
+                data: {name_give : rename, desc_give: redesc},
+                success: function (response) {
+                    alert(response['msg'])
+                    window.location.reload()
+                }
+            })
+        }
+
     </script>
 
 </head>
@@ -134,6 +154,22 @@
             <div class="container">
                 <div id="profile" class="profile">
                 </div>
+            <div id="edit-container">
+                <div id="edit-wrapper">
+                    <div class="edit-info">
+                        <p>이름을 변경</p>
+                        <input id="name-change" type="text" placeholder="변경할 이름을 입력하세요">
+                    </div>
+                    <div class="edit-info">
+                        <p> 자기소개를 변경해보세요!</p>
+                        <textarea id="desc-change" cols="60" rows="3" placeholder="변경할 내용을 입력해주세요!"> </textarea>
+                    </div>
+                    <div class = "buttons">
+                        <button id = "save" onclick="Update_profile()">저장</button>
+                        <button id = "close" onclick="close_box()">닫기</button>
+                    </div>
+                </div>
+            </div>
                 <!------profile------>
                 <div class="contents">
                     <div class="tab_box">
