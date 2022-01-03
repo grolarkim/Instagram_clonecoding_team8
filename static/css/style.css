@@ -15,7 +15,7 @@ span{
     min-height: 560px;
     width: 100%;
     height: 100%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .mobile_header {
@@ -65,13 +65,17 @@ span{
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: first;
     justify-content: space-between;
+    margin-top: 100px;
 }
-
+.upper_container #my_post{
+    margin-top: 0;
+}
 .container {
     max-width: 614px;
     width: 100%;
+    height: 100px;
     margin: auto;
     padding: 7vh 0;
 }
@@ -170,13 +174,14 @@ span{
     background-size: contain;
 }
 
-
-
 .post_container .post_pic{
     height: 50vh;
     background: url('../images/고길동 배경.png') no-repeat;
     background-position: center;
     background-size: cover;
+}
+.post_container .pic_desc {
+
 }
 
 
@@ -478,7 +483,7 @@ span{
     }
 
     .container {
-        padding: 60px 0 0 0;
+        padding: 0 0 0 0;
     }
 
     .stories_container {
@@ -489,7 +494,7 @@ span{
     }
 
     .post_container{
-        margin: 15px 0;
+        margin: 0;
     }
 
     .mobile_footer {
