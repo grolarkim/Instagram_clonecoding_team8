@@ -14,6 +14,7 @@
         $(document).ready(function () {
             show_story();
             show_post();
+            show_recommend();
         });
 
         function show_story() {
@@ -141,6 +142,48 @@
                         
         }
 
+        function show_recommend() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/recommend',
+                data: {},
+                success: function (response) {
+                    let r_list = response['list']
+                    let list_leng = 0
+                    if (r_list.length < 5) {
+                        list_leng = r_list.length
+                    } else {
+                        list_leng = 5
+                    }
+                    for (let i = 0; i < list_leng; i++) {
+                        let name = r_list[i]['name']
+                        let url = r_list[i]['url']
+                        let desc = r_list[i]['desc']
+                        let temp_aside = `
+                            <div class="aside_reco">
+                                <div class="aside_user">
+                                    <div class="aside_pic" style="background: url(${url}) no-repeat; background-position: center; background-size: cover;">
+                                    </div>
+                                    <div class="aside_user_info">
+                                        <p><span>${name}</span></p>
+                                        <p>${desc}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="" class="aside_follow">팔로우</a>
+                                </div>
+                            </div>
+                        `
+                        $('#aside_wrapper').append(temp_aside)
+                    }
+
+                    
+                    
+                }
+
+            })
+        }
+
     </script>
 </head>
 
@@ -180,7 +223,7 @@
                 <div class="stories_container" id="my_story">
                 </div>
             </div>
-            <aside class="aside_container">
+            <aside class="aside_container" id="aside_container">
                 <div class="aside_header">
                     <div>
                         <p id="reco_4u">회원님을 위한 추천</p>
@@ -189,78 +232,8 @@
                         <p><span>모두 보기</span></p>
                     </div>
                 </div>
-                <div class="aside_wrapper">
-                    <div class="aside_reco">
-                        <div class="aside_user">
-                            <div class="aside_pic">
-
-                            </div>
-                            <div class="aside_user_info">
-                                <p><span>둘리</span></p>
-                                <p>고길동님이 팔로우합니다</p>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="" class="aside_follow">팔로우</a>
-                        </div>
-                    </div>
-                    <div class="aside_reco">
-                        <div class="aside_user">
-                            <div class="aside_pic">
-
-                            </div>
-                            <div class="aside_user_info">
-                                <p><span>둘리</span></p>
-                                <p>고길동님이 팔로우합니다</p>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="" class="aside_follow">팔로우</a>
-                        </div>
-                    </div>
-                    <div class="aside_reco">
-                        <div class="aside_user">
-                            <div class="aside_pic">
-
-                            </div>
-                            <div class="aside_user_info">
-                                <p><span>둘리</span></p>
-                                <p>고길동님이 팔로우합니다</p>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="" class="aside_follow">팔로우</a>
-                        </div>
-                    </div>
-                    <div class="aside_reco">
-                        <div class="aside_user">
-                            <div class="aside_pic">
-
-                            </div>
-                            <div class="aside_user_info">
-                                <p><span>둘리</span></p>
-                                <p>고길동님이 팔로우합니다</p>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="" class="aside_follow">팔로우</a>
-                        </div>
-                    </div>
-                    <div class="aside_reco">
-                        <div class="aside_user">
-                            <div class="aside_pic">
-
-                            </div>
-                            <div class="aside_user_info">
-                                <p><span>둘리</span></p>
-                                <p>고길동님이 팔로우합니다</p>
-                            </div>
-                        </div>
-                        <div>
-                            <a href="" class="aside_follow">팔로우</a>
-                        </div>
-                    </div>
-
+                <div class="aside_wrapper" id="aside_wrapper">
+                                        
                 </div>
 
             </aside>
