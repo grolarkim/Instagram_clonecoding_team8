@@ -41,10 +41,12 @@ function show_post() {
         success: function (response) {
             let url = response['user_infos'][0]['url']
             let name = response['user_infos'][0]['name']
+
             for (let i = 0; i < response['post_list'].length; i++) {
                 let post = response['post_list'][i]['url']
                 let post_time = response['post_list'][i]['time']
-                
+                let desc = response['post_list'][i]['desc']
+                let id = response['user_infos'][0]['id']
                 let time = time_now - post_time
                 let minute = parseInt(time / 60000)
                 let t
@@ -59,53 +61,32 @@ function show_post() {
                 } else {
                     t = String(parseInt(minute/525600)) + "년 전"
                 }
-                
-                let post_html = `
-                    <div class="post_container" >
-                        <div class="post_head">
-                            <div class="post_title" >
-                                <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
-                                </div>
-                                <p class="title_name">
-                                    ${name}
-                                </p>
-                            </div>
-                            <button class="icon more" onclick="post_delete(${post_time})">
-                            </button>
-                        </div>
-                        <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
-                        </div>
-                        <div class="post_wrap">
-                            <div class="post_btns">
-                                <div class="like_reply_message">
-                                    <div class="icon heart">
+
+                let post_html = `<div class="post_container" >
+                                    <div class="post_head">
+                                        <div class="post_title" >
+                                            <div class="title_pic" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;">
+                                            </div>
+                                            <p class="title_name">
+                                                ${name}
+                                            </p>
+                                        </div>
+                                        <button class="icon more" onclick="post_delete(${post_time})">
+                                        </button>
                                     </div>
-                                    <div class="icon re">
+                                    <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
                                     </div>
-                                    <div class="icon mess">
+                                    <div class="post_wrap">
+                                        <div class="pic_desc">
+                                            <p>${desc}</p>
+                                        </div>
+                                        <div class="time">
+                                                <p> ${t} </p>
+                                        </div>
                                     </div>
-                                </div>
-                                <button class="icon bookmark">
-                                </button>
-                            </div>
-                            <div class="likes">
-                                <div class="like_pic"></div>
-                                    <p>
-                                        <span>둘리</span>님 <span>외 10,000명이</span> 좋아합니다.
-                                    </p>
-                                </div>
-                                <div class="reply">
-                                    <p>
-                                        <span>둘리</span> 호이~
-                                    </p>
-                                    <p> </p>
-                                </div>
-                                <div class="time">
-                                    <p> ${t} </p>
-                                </div>
-                            </div>
-                        </div>                                    
-                    </div>`
+                                </div>`
+
+
                 $('#my_post').append(post_html)
             }
         }
