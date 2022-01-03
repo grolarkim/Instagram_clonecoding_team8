@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인스타그램 게시물 수정하기 </title>
+    <!-- jQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="/static/css/join.css">
+    <script src="static\js\posting_update.js"></script>
+</head>
+
+<body>
+    <div id ="container">
+        <div id = "img-text-wrapper">
+            <img src="/static/images/insta-logo.png">
+            <p>{{user_id}}님 경수없는 경수팀의 인스타그램페이지의 게시물을 수정하세요!</p>
+        </div>
+
+        <div id = "input-div">
+            <div id = "input-wrapper">
+                <input id="url" type="url" class="join-input" placeholder="사진으로 사용할 이미지 주소를 입력해주세요!">
+                <textarea id="desc" class="join-input" cols="30" rows="2" placeholder="사진의 설명을 적어주세요!"></textarea>
+            </div>
+
+            <button onclick="post_update()" id="posting_btn" value="{{p_time}}">게시물 수정</button>
+            <button onclick="location.href='/'">돌아가기</button>
+
+        </div>
+    </div>
+</body>
+</html>

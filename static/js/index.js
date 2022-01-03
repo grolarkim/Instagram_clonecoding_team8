@@ -86,7 +86,7 @@ function show_post() {
                                     </div>
                                     <div class="ud_modal" id="modal_${post_time}">
                                         <div class="ud_modal_window">
-                                            <button>게시물 수정</button>
+                                            <button onclick="location.href='/post_update?time=${post_time}'">게시물 수정</button>
                                             <button onclick="post_delete(${post_time})">게시물 삭제</button>
                                             <button onclick="close_modal()">닫기</button>
                                         </div>

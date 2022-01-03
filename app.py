@@ -70,6 +70,24 @@ def showPostingPage():
         return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
 
 
+@app.route('/post_update')
+def showPostUpdatePage():
+    args_dict = request.args.to_dict()
+    post_time = args_dict['time']
+    token_receive = request.cookies.get('mytoken')
+    try:
+	    # 암호화되어있는 token의 값을 우리가 사용할 수 있도록 디코딩(암호화 풀기)해줍니다!
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        user_info = db.register.find_one({"id": payload['id']})
+        return render_template('post_update.html', user_id=user_info["id"], p_time=post_time)
+		# 만약 해당 token의 로그인 시간이 만료되었다면, 아래와 같은 코드를 실행합니다.
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("showLoginPage", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+		# 만약 해당 token이 올바르게 디코딩되지 않는다면, 아래와 같은 코드를 실행합니다.
+        return redirect(url_for("showLoginPage", msg="로그인 정보가 존재하지 않습니다."))
+
+
 ######### 이 밑으로는 api  ###############
 
 @app.route('/api/timeline', methods=['GET'])
@@ -204,7 +222,7 @@ def post_update():
         'url': url_receive,
         'desc': desc_receive
     }
-    db.users.update_one({'time':save_time},{'$set':doc})
+    db.post.update_one({'time':save_time},{'$set':doc})
     return jsonify({'msg': '게시물 업데이트 완료!'})
 
 if __name__ == '__main__':
