@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="static\css\style.css">
     <script src="static\js\log.js"></script>
     <script src="static\js\index.js"></script>
+    <script>
+
+    </script>
 
 
 </head>
@@ -49,6 +52,34 @@
         <div class="upper_container">
             <div class="container" id="my_post">
                 <div class="stories_container" id="my_story">
+                </div>
+                <div class="post_container" >
+                    <div class="post_head">
+                        <div class="post_title" >
+                            <div class="title_pic" style="background: url('https://image.news1.kr/system/photos/2021/11/20/5082143/article.jpg/dims/optimize') no-repeat;background-position: center; background-size: cover;">
+                            </div>
+                            <p class="title_name">
+                                name
+                            </p>
+                        </div>
+                        <button class="icon more" onclick="show_modal(modal_1)">
+                        </button>
+                    </div>
+                    <div class="post_pic" style="background: url('https://image.news1.kr/system/photos/2021/11/20/5082143/article.jpg/dims/optimize') no-repeat;background-position: center; background-size: cover;">
+                    </div>
+                    <div class="post_wrap">
+                        <div class="likes">
+                            <div class="time">
+                                <p> t </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ud_modal" id="modal_1">
+                        <div class="ud_modal_window">
+                            <button>게시물 수정</button>
+                            <button onclick="post_delete()">게시물 삭제</button>
+                        </div>
+                    </div>                                    
                 </div>
             </div>
             <aside class="aside_container" id="aside_container">

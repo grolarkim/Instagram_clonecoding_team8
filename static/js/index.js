@@ -151,3 +151,10 @@ function show_recommend() {
 
     })
 }
+
+function show_modal(modal_id) {
+    $(modal_id).show();
+    $('body').css("overflow", "hidden");
+    $('html').css("overflow", "hidden");
+
+}

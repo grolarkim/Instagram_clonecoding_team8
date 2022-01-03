@@ -121,7 +121,7 @@ def Login():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=600)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=6000)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -194,6 +194,18 @@ def recommend():
     # 데이터베이스에서 일치하는 아이디 유저를 제외하고 검색하여 유저리스트 얻음
     users_list = list(db.register.find({'id':{'$ne':payload['id']} },{'_id':False}))
     return jsonify({'list': users_list})
+
+@app.route('/api/post_update', methods=['POST'])
+def post_update():
+    url_receive = request.form['url_give']
+    desc_receive = request.form['desc_give']
+    save_time = request.form['time_give']
+    doc = {
+        'url': url_receive,
+        'desc': desc_receive
+    }
+    db.users.update_one({'time':save_time},{'$set':doc})
+    return jsonify({'msg': '게시물 업데이트 완료!'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
