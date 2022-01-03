@@ -54,6 +54,7 @@
                 success: function (response) {
                     let url = response['user_infos'][0]['url']
                     let name = response['user_infos'][0]['name']
+                    let desc = response['post_list'][0]['desc']
                     for (let i = 0; i < response['post_list'].length; i++) {
                         let post = response['post_list'][i]['url']
                         let post_time = response['post_list'][i]['time']
@@ -88,6 +89,7 @@
                                 </div>
                                 <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
                                 </div>
+                                <div id = "pic_desc"><p>${desc}</p></div>
                                 <div class="post_wrap">
                                     <div class="post_btns">
                                         <div class="like_reply_message">
@@ -176,11 +178,7 @@
                         `
                         $('#aside_wrapper').append(temp_aside)
                     }
-
-                    
-                    
                 }
-
             })
         }
 
