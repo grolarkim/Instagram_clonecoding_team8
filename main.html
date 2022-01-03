@@ -17,10 +17,10 @@
             show_me();
             show_pic();
         });
-         function open_box() {
+        function open_box() {
             $('#edit-container').show()
         }
-         function close_box() {
+        function close_box() {
             $('#edit-container').hide()
         }
         function show_me() {
@@ -34,6 +34,8 @@
                     let url = response['user_infos'][0]['url']
                     let id = response['user_infos'][0]['id']
                     let post_count = response['post_list'].length
+                    let mini_profile_html = `<a href="/profile" class="icons" id="profile_pc" style="background: url('${url}') no-repeat;background-position: center; background-size: cover;""></a>`
+                    $('#head_leftside').append(mini_profile_html)
                     let info_html = `<div class="profile_img">
                                             <img src="${url}" alt="">
                                         </div>
@@ -56,7 +58,7 @@
                                                 </div>
                                                 <div class="tit_desc">
                                                     <span class="title">팔로우</span>
-                                                    <span class="sub_title"></span>
+                                                    <span class="sub_title">0</span>
                                                 </div>
                                             </div>
                                             <div class="area_text profile_info">
@@ -124,30 +126,11 @@
                 <div class="input_box">
                     <input type="text" placeholder="검색" id="search">
                 </div>
-                <nav class="nav">
-                    <ul class="link_list">
-                        <li>
-                            <a href="/">
-                                <i class="fas fa-home"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/posting">
-                                <i class="fas fa-compass"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:logout()">
-                                <i class="fas fa-heart"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/profile">
-                                <i class="fas fa-circle"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div id ="head_leftside" class="btns">
+                    <a href="/" class="icons" id="home_pc"></a>
+                    <a href="/posting" class="icons" id="trend_pc"></a>
+                    <a href="javascript:logout()" class="icons" id="heart_pc"></a>
+                </div>
             </div>
         </header>
         <!------header------>
