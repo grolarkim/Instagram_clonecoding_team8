@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <title>인스타그램 프로필화면</title>
+    <link rel="stylesheet" href="/static/css/reset.css">
+    <link rel="stylesheet" href="/static/css/main_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <script src="static\js\log.js"></script>
+    <script src="static\js\main.js"></script>
+
+
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header">
+            <div class="inner">
+                <h1 class="logo">
+                    <a href="/">
+                        <img src="/static/images/1600px-Insta_logo.png">
+                    </a>
+                </h1>
+                <div class="input_box">
+                    <input type="text" placeholder="검색" id="search">
+                </div>
+                <div id ="head_leftside" class="btns">
+                    <a href="/" class="icons" id="home_pc"></a>
+                    <a href="/posting" class="icons" id="trend_pc"></a>
+                    <a href="javascript:logout()" class="icons" id="heart_pc"></a>
+                </div>
+            </div>
+        </header>
+        <!------header------>
+        <div class="main">
+            <div class="container">
+                <div id="profile" class="profile">
+                </div>
+            <div id="edit-container">
+                <div id="edit-wrapper">
+                    <div class="edit-info">
+                        <p>이름을 변경</p>
+                        <input id="name-change" type="text" placeholder="변경할 이름을 입력하세요">
+                    </div>
+                    <div class="edit-info-url">
+                        <p>프로필 사진을 변경</p>
+                        <input id="url-change" type="url" class="join-input" placeholder="변경할 이미지 주소를 입력하세요">
+                    </div>
+                    <div class="edit-info">
+                        <p> 자기소개를 변경해보세요!</p>
+                        <textarea id="desc-change" cols="60" rows="3" placeholder="변경할 내용을 입력해주세요!"> </textarea>
+                    </div>
+                    <div class = "buttons">
+                        <button id = "save" onclick="Update_profile()">저장</button>
+                        <button id = "close" onclick="close_box()">닫기</button>
+                    </div>
+                </div>
+            </div>
+                <!------profile------>
+                <div class="contents">
+                    <div class="tab_box">
+                        <ul class="tab_list">
+                            <li class="active">
+                                <a href="">
+                                    <i class="fas fa-list"></i>
+                                    <span>게시물</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="photos" class="boards">
+                    </div>
+                </div>
+                <!------contents------>
+                <footer class="footer">
+                    <span>경수없는 경수팀 All Rights Deserved.</span>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
