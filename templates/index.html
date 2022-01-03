@@ -79,8 +79,8 @@
                                             ${name}
                                         </p>
                                     </div>
-                                    <div class="icon more">
-                                    </div>
+                                    <button class="icon more" onclick="post_delete(${post_time})">
+                                    </button>
                                 </div>
                                 <div class="post_pic" style="background: url('${post}') no-repeat;background-position: center; background-size: cover;">
                                 </div>
@@ -94,8 +94,8 @@
                                             <div class="icon mess">
                                             </div>
                                         </div>
-                                        <div class="icon bookmark">
-                                        </div>
+                                        <button class="icon bookmark">
+                                        </button>
                                     </div>
                                     <div class="likes">
                                         <div class="like_pic"></div>
@@ -119,6 +119,23 @@
                     }
                 }
             })
+        }
+
+        function post_delete(time) {
+            if (confirm("이 게시물을 삭제하시겠습니까?")) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/post_delete',
+                    data: {time_give : time},
+                    success: function (response) {
+                        alert(response['msg'])
+                        window.location.reload();
+                    }
+                })
+            } else {
+                alert("취소되었습니다.")
+            }
+                        
         }
 
     </script>

@@ -35,6 +35,8 @@ span{
     width: 22px;
     height: 22px;
     margin: 0 3%;
+    border: 0;
+    cursor: pointer;
 }
 .mobile_header #camera{
     background: url('../images/camera@3x.png') no-repeat;
@@ -127,6 +129,8 @@ span{
     height: 22px;
     width: 22px;
     margin: 0 3%;
+    border: 0;
+    cursor: pointer;
 }
 
 
@@ -347,6 +351,7 @@ span{
     height: 22px;
     border: 0;
     margin: 0 11px;
+    cursor: pointer;
 }
 .pc_header .head_container .btns #home_pc {
     background: url('../images/home@3x.png') no-repeat;

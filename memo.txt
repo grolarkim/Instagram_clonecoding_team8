@@ -174,3 +174,7 @@ git clone 은 github 저장소를 만든 사람이 아니라 협업에 참여할
 1229 html css
 
 image url CORB issue
+
+프로필 업데이트
+프로필 업뎃창 열고 닫기
+포스트 삭제

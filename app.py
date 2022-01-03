@@ -180,21 +180,12 @@ def Update():
     return jsonify({'msg': '프로필 변경 완료!'})
 
 
-@app.route('/api/profile_update', methods=['POST'])
-def profile_update():
-    # 로그인 되어있는 아이디의 값을 쿠키를 통해 얻음
-    token_receive = request.cookies.get('mytoken')
-    payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+@app.route('/api/post_delete', methods=['POST'])
+def postDelete():
+    save_time = request.form['time_give']
+    db.post.delete_one({'time' : save_time})
+    return jsonify({'msg': '게시물 삭제 완료!'})
 
-    doc = {
-        'url': request.form['url_give'],
-        'name': request.form['name_give'],
-        'desc': request.form['desc_give']
-    }
-
-    db.register.update_one({'id': payload['id']}, doc)
-
-    return jsonify({'msg': '정보 수정 완료'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
