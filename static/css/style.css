@@ -373,11 +373,6 @@ span{
     background-position: center;
     background-size: 22px 22px;
 }
-.pc_header .head_container .btns #dm_pc {
-    background: url('../images/dm@3x.png') no-repeat;
-    background-position: center;
-    background-size: 22px 22px;
-}
 .pc_header .head_container .btns #trend_pc {
     background: url('../images/trending@3x.png') no-repeat;
     background-position: center;
@@ -388,12 +383,14 @@ span{
     background-position: center;
     background-size: 22px 22px;
 }
-.pc_header .head_container .btns #more_pc {
-    background: url('../images/more@3x.png') no-repeat;
+.pc_header .head_container .btns #profile_pc {
+    background: url('../images/profile.png') no-repeat;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
 }
-
 
 .aside_container{
     width: 300px;
