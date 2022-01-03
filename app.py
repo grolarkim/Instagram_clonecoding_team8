@@ -191,13 +191,9 @@ def recommend():
     # 로그인 되어있는 아이디의 값을 쿠키를 통해 얻음
     token_receive = request.cookies.get('mytoken')
     payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-    # 데이터베이스에서 일치하는 아이디 검색하여 유저 정보 얻음
-    user_infos = list(db.register.find({'id': payload['id']},{'_id':False}))
-    users_list = list(db.register.find({},{'_id':False}))
-    # 차집합을 통해 로그인 되어있는 아이디를 제외한 유저 리스트를 가져옴
-    recommend_list = list(set(users_list) - set(user_infos))
-        
-    return jsonify({'list': recommend_list})
+    # 데이터베이스에서 일치하는 아이디 유저를 제외하고 검색하여 유저리스트 얻음
+    users_list = list(db.register.find({'id':{'$ne':payload['id']} },{'_id':False}))
+    return jsonify({'list': users_list})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
