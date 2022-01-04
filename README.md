@@ -43,22 +43,29 @@
 ------------
 ## 결과 화면
 
-1. 로그인 화면
-> ![](https://images.velog.io/images/grolar812/post/42e1a528-d8f6-4f97-937f-0f972ea805c4/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%B0%BD.png)
+1. 기본화면
+> 
+1 기본
+![](https://images.velog.io/images/grolar812/post/6939cb96-2454-4d50-843b-3adc0193c76c/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EA%B8%B0%EB%B3%B8%20%ED%99%94%EB%A9%B4.png)
+2 수정, 삭제
+![](https://images.velog.io/images/grolar812/post/90417fc0-d23e-4a1b-bec2-0949ff900bec/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EA%B8%B0%EB%B3%B8%20%ED%99%94%EB%A9%B4%202.png)
 
-2. 회원가입 화면
-> ![](https://images.velog.io/images/grolar812/post/1bfb64fd-8be1-4443-af00-6cb8b5824a6d/%EC%9D%B8%EC%8A%A4%ED%83%80%20%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%20%EC%B0%BD.png)
+2. 게시물 업데이트 화면 
+> ![](https://images.velog.io/images/grolar812/post/aa147bfd-87a5-4013-879f-0e99406c44a2/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EA%B2%8C%EC%8B%9C%EB%AC%BC%20%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8%20%EC%B0%BD.png)
 
-3. 기본화면
-> ![](https://images.velog.io/images/grolar812/post/e342bc3d-b161-4749-b89e-1f2d49dfb2e7/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EA%B8%B0%EB%B3%B8%20%ED%99%94%EB%A9%B4.png)
+3. 게시물 생성 화면
+> ![](https://images.velog.io/images/grolar812/post/cd67728f-ba51-4d29-a3b0-53c7da6bd7e6/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EA%B2%8C%EC%8B%9C%EB%AC%BC%20%EC%83%9D%EC%84%B1%20%EC%B0%BD.png)
 
 4. 프로필 화면
 >
 1 기본
-![](https://images.velog.io/images/grolar812/post/04d2ae93-0678-46a1-ac1b-bab39d937f5e/%EC%9D%B8%EC%8A%A4%ED%83%80%20%ED%94%84%EB%A1%9C%ED%95%84%20%EC%B0%BD%201.png)
+![](https://images.velog.io/images/grolar812/post/90c14b08-c400-46df-8c25-b8c3321e1984/%EC%9D%B8%EC%8A%A4%ED%83%80%20%ED%94%84%EB%A1%9C%ED%95%84%20%EC%B0%BD%201.png)
 2 프로필 편집
-![](https://images.velog.io/images/grolar812/post/5b045b9f-0246-4902-b403-46faab075896/%EC%9D%B8%EC%8A%A4%ED%83%80%20%ED%94%84%EB%A1%9C%ED%95%84%20%EC%B0%BD%202.png)
+![](https://images.velog.io/images/grolar812/post/00aa2561-385d-4038-8989-4d688b01a9dc/%EC%9D%B8%EC%8A%A4%ED%83%80%20%ED%94%84%EB%A1%9C%ED%95%84%20%EC%B0%BD%202.png)
 
-5. 게시물 생성 화면
-> ![](https://images.velog.io/images/grolar812/post/cd67728f-ba51-4d29-a3b0-53c7da6bd7e6/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EA%B2%8C%EC%8B%9C%EB%AC%BC%20%EC%83%9D%EC%84%B1%20%EC%B0%BD.png)
+5. 로그인 화면
+> ![](https://images.velog.io/images/grolar812/post/42e1a528-d8f6-4f97-937f-0f972ea805c4/%EC%9D%B8%EC%8A%A4%ED%83%80%20%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%B0%BD.png)
+
+6. 회원가입 화면
+> ![](https://images.velog.io/images/grolar812/post/1bfb64fd-8be1-4443-af00-6cb8b5824a6d/%EC%9D%B8%EC%8A%A4%ED%83%80%20%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%20%EC%B0%BD.png)
 
