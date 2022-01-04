@@ -21,20 +21,23 @@
 
 ------------
 ## 기능 및 구조
-
-
-| NO. | 기능 | 요청방식 | url | request (프론트에서 ajax 사용시 data에 넣을 것) | response (백엔드에서 jsonify 사용시 넣을것) | 비고 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | 메인화면 | GET | / |  |  | (index.html불러옴) |
-| 2 | 메인화면 데이터보내기 | POST | /api/timeline | {id_give: id} | {'post':post_list}  | DB에서 ID가 같은 작성글 검색 |
-| 3 | 마이 페이지 | GET | /profile |  |  | (profile.html불러옴) |
-| 4 | 마이 페이지 데이터 보내기 | POST | /api/my_post | {id_give: id} | {'post':post_list} | DB에서 ID가 같은 작성글 검색 |
-| 5 | 로그인 페이지 | GET | /login |  |  | (login.html불러옴) |
-| 6 | 로그인 | POST | /api/login | {id_give : id ,pw_give : pw}  | 성공시 {'result': 'success', 'token': token} 실패시 {'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'} | DB에 있는지 검색 후 있으면 로그인 |
-| 7 | 회원가입 창 | GET | /register |  |  | (register.html불러옴) |
-| 8 | 계정생성 | POST | /api/register | {id_give : id , pw_give :pw, url_give :url,   name_give:name, desc_give: desc} | {'result': 'success'} | 중복 ID 검색후 없으면 DB에 저장 |
-| 9 | 게시글 올리기 페이지 | GET | /posting |  |  | (posting.html불러옴) |
-| 10 | 게시글 올리기 | POST | /api/posting | {post_img_give: post_img, post_text_give: post_text, author_id_give: author_id, post_time_give: post_time} | {'result': 'success'} | DB에 저장 |
+| NO. |            기능           | 요청방식 |         url         |                  request (프론트에서 ajax 사용시 data에 넣을 것)                 |                                      response (백엔드에서 jsonify 사용시 넣을것)                                      |                      비고                      |
+|:---:|:-------------------------:|:--------:|:-------------------:|:--------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------:|
+| 1   | 메인화면                  | GET      | /                   |                                                                                  |                                                                                                                       | (index.html불러옴)                             |
+| 1-1 | 메인화면 데이터보내기     | GET      | /api/timeline       | cookie                                                                           | {'user_infos': user_infos, 'post_list' : post_list_r }                                                                | 포스트DB에서 ID가 같은 작성글 검색             |
+| 1-2 | 회원 추천 리스트          | GET      | /api/recommend      | cookie                                                                           | {'list': users_list}                                                                                                  | 유저DB에서 ID가 다른 유저 검색                 |
+| 1-3 | 포스트 삭제               | POST     | /api/post_delete    | {time_give : time}                                                               | {'msg': '게시물 삭제 완료!'}                                                                                          | 포스트DB에서 포스트시간이 같은 작성글 삭제     |
+| 2   | 포스트 업데이트 창        | GET      | /post_update        | cookie                                                                           |                                                                                                                       | (post_update.html 불러옴)                      |
+| 2-1 | 포스트 업데이트           | POST     | /api/post_update    | {url_give : url, desc_give : desc, time_give : time}                             | {'msg': '게시물 업데이트 완료!'}                                                                                      | 포스트DB에서 포스트시간이 같은 작성글 업데이트 |
+| 3   | 게시글 올리기 페이지      | GET      | /posting            | cookie                                                                           |                                                                                                                       | (posting.html불러옴)                           |
+| 3-1 | 게시글 올리기             | POST     | /api/posting        | {id_give : id, url_give : url, desc_give : desc, time_give : time}               | {'msg': '게시물 생성 완료!'}                                                                                          | 포스트DB에 저장                                |
+| 4   | 마이 페이지               | GET      | /profile            | cookie                                                                           |                                                                                                                       | (profile.html불러옴)                           |
+| 4-1 | 마이 페이지 데이터 보내기 | GET      | /api/my_post        | cookie                                                                           | {'user_infos': user_infos, 'post_list' : post_list_r }                                                                | 포스트DB에서 ID가 같은 작성글 검색             |
+| 4-2 | 프로필 업데이트           | POST     | /api/profile_update | {name_give : rename, desc_give: redesc, url_give : reurl}                        | {'msg': '프로필 변경 완료!'}                                                                                          | 유저DB에서 ID가 같은 유저 업데이트             |
+| 5   | 로그인 페이지             | GET      | /login              |                                                                                  |                                                                                                                       | (login.html불러옴)                             |
+| 5-1 | 로그인                    | POST     | /api/login          | {id_give : id ,pw_give : pw}                                                     | 성공시 {'result': 'success', 'token': token} 실패시 {'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'} | 유저DB에 있는지 검색 후 있으면 로그인          |
+| 6   | 회원가입 창               | GET      | /register           |                                                                                  |                                                                                                                       | (register.html불러옴)                          |
+| 6-1 | 계정생성                  | POST     | /api/register       | {id_give : id, pw_give : pw, url_give : url, name_give : name, desc_give : desc} | {'msg': '가입완료'}                                                                                                   | 유저DB에 저장                                  |
 
 
 ------------
