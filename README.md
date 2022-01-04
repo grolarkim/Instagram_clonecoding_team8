@@ -1,5 +1,6 @@
 # Instagram_clonecoding_team8
 인스타그램 클론 코딩 팀프로젝트입니다.
+[시연영상](https://youtu.be/62VFKvnboZ8)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/grolarkim/Instagram_clonecoding_team8?style=plastic)
 
